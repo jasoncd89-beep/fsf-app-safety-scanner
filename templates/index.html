@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FSF App Safety Scanner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{accent:'#E63946'}}}}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="data:,">
+  <style>
+    body{background:#FFFFFF;color:#000000}
+    .card{box-shadow:0 10px 25px rgba(0,0,0,.06)}
+    .badge{background:#000;color:#fff}
+    .btn-accent{background:#E63946;color:#fff}
+    .btn-accent:hover{filter:brightness(.95)}
+    .copy-box{white-space:pre-wrap}
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-3xl">
+    <header class="text-center mb-6">
+      <h1 class="text-3xl md:text-4xl font-bold">FSF App Safety Scanner</h1>
+      <p class="text-gray-700 mt-2">Scan any app and get your Family Digital Immune Summary™ in seconds.</p>
+      <p class="text-xs text-gray-500 mt-1">This tool provides educational guidance to help parents. Always review official policies and use your judgment for your family.</p>
+    </header>
+
+    <div class="card bg-white rounded-2xl p-4 md:p-6 border border-gray-100">
+      <div class="flex gap-2">
+        <input id="query" class="flex-1 border border-gray-300 rounded-lg px-3 py-3 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="e.g., TikTok, Discord, Roblox, CapCut" />
+        <button id="scanBtn" class="btn-accent rounded-lg px-4 py-3 font-medium disabled:opacity-50 disabled:cursor-not-allowed">Scan now</button>
+      </div>
+      <p id="inputHelp" class="text-xs text-red-600 mt-2 hidden">Please enter an app or platform name.</p>
+
+      <div id="result" class="mt-6 hidden">
+        <div class="flex items-center justify-between">
+          <h2 id="appTitle" class="text-2xl font-semibold"></h2>
+          <span id="threatBadge" class="badge px-3 py-1 rounded-full text-sm"></span>
+        </div>
+
+        <section class="mt-4">
+          <h3 class="font-semibold">Biggest Hidden Risks</h3>
+          <ul id="risksList" class="list-disc ml-5 mt-2 space-y-1"></ul>
+        </section>
+
+        <section class="mt-4">
+          <h3 class="font-semibold">Kid-Proof Conversation Script</h3>
+          <div class="relative">
+            <pre id="conversation" class="copy-box border border-gray-200 rounded-lg p-3 bg-gray-50 overflow-x-auto"></pre>
+            <button id="copyScript" class="absolute top-2 right-2 text-xs px-2 py-1 border rounded bg-white hover:bg-gray-50">Copy</button>
+          </div>
+        </section>
+
+        <section class="mt-4">
+          <h3 class="font-semibold">Action Checklist</h3>
+          <ul id="checklist" class="ml-1 mt-2 space-y-2"></ul>
+        </section>
+
+        <section id="notesWrap" class="mt-4 hidden">
+          <h3 class="font-semibold">Notes</h3>
+          <p id="notes" class="mt-1 text-gray-700"></p>
+        </section>
+
+        <div class="mt-6 flex gap-2">
+          <button id="copySummary" class="border rounded-lg px-4 py-2 hover:bg-gray-50">Copy Summary</button>
+          <button id="downloadPdf" class="btn-accent rounded-lg px-4 py-2">Download PDF</button>
+        </div>
+      </div>
+
+      <div id="error" class="mt-6 text-red-600 hidden"></div>
+    </div>
+
+    <footer class="text-center text-xs text-gray-500 mt-6">
+      © Future Safe Families — Educational guidance, not legal advice.
+    </footer>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
